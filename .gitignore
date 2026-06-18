@@ -1,0 +1,17 @@
+node_modules
+.next
+out
+.env*
+!.env.example
+.DS_Store
+*.log
+.vercel
+.idea
+.vscode
+
+# Source-only assets — already copied to /public/ by setup-assets.mjs
+/learnings_cleancode - Copy/
+/EAadhaar*
+/Keshav Krishan Sharma – Resume (Print Optimized).pdf
+/ai certificate 1.pdf
+/certificate-pk6qvfo97z5t-1776952332.pdf
