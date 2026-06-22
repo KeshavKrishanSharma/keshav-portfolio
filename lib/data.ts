@@ -23,7 +23,7 @@ export const profile = {
   phone: '+91-9911220507',
   resumeUrl: '/resume.pdf',
   // Canonical site URL — update once deployed (e.g. https://keshav.vercel.app)
-  siteUrl: 'https://keshav-portfolio.vercel.app',
+  siteUrl: 'https://keshav-portfolio-nu.vercel.app',
   socials: {
     linkedin: 'https://linkedin.com/in/keshav-krishan',
     github: 'https://github.com/keshavkr'
