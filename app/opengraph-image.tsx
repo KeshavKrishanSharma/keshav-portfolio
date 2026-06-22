@@ -2,6 +2,7 @@ import { ImageResponse } from 'next/og';
 import { profile } from '@/lib/data';
 
 export const runtime = 'edge';
+
 export const alt = `${profile.name} — Solutions Architect & Technical Lead`;
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';

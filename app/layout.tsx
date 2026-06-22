@@ -25,7 +25,11 @@ const mono = JetBrains_Mono({
 const title = `${profile.name} — Solutions Architect & Technical Lead`;
 
 export const metadata: Metadata = {
-  metadataBase: new URL(profile.siteUrl),
+  metadataBase: new URL(
+    process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : profile.siteUrl
+  ),
   title,
   description: profile.tagline,
   keywords: [
@@ -45,7 +49,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: profile.name, url: profile.siteUrl }],
   creator: profile.name,
-  alternates: { canonical: '/' },
+  alternates: { canonical: profile.siteUrl },
   openGraph: {
     title,
     description: profile.tagline,
