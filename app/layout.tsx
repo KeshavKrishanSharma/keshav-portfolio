@@ -1,7 +1,9 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter, Space_Grotesk, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
+import { Analytics } from '@vercel/analytics/react';
 import { ThemeProvider } from './providers';
+import { TransitionProvider } from '@/components/world/TransitionProvider';
 import { profile } from '@/lib/data';
 
 const inter = Inter({
@@ -122,7 +124,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="relative overflow-x-hidden">
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <TransitionProvider>{children}</TransitionProvider>
+        </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );

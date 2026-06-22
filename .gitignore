@@ -8,6 +8,8 @@ out
 .vercel
 .idea
 .vscode
+.claude
+tsconfig.tsbuildinfo
 
 # Source-only assets — already copied to /public/ by setup-assets.mjs
 /learnings_cleancode - Copy/
@@ -15,3 +17,5 @@ out
 /Keshav Krishan Sharma – Resume (Print Optimized).pdf
 /ai certificate 1.pdf
 /certificate-pk6qvfo97z5t-1776952332.pdf
+# Duplicate PDFs with malformed names
+/Krishan*

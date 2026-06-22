@@ -19,7 +19,9 @@ fs.mkdirSync(PUBLIC_CERTS, { recursive: true });
 // government ID and should never be published).
 const COPIES = [
   {
-    src: 'Keshav Krishan Sharma – Resume (Print Optimized).pdf',
+    // Full-stack / technical résumé — served on /resume and in the
+    // Engineer + Designer worlds.
+    src: 'Keshav-Resume-FullStack.pdf',
     dest: path.join(PUBLIC_ROOT, 'resume.pdf')
   },
   {
@@ -82,6 +84,36 @@ for (const { src, dest } of COPIES) {
   } catch (err) {
     console.error(`[setup-assets] failed ${src}: ${err.message}`);
   }
+}
+
+// ── Leadership / "stats" résumé (served in the Strategist world) ──────────
+// Drop the management-focused PDF in the project root as one of the names
+// below and it will be published at /resume-leadership.pdf. Until you do, the
+// Strategist world gracefully falls back to the standard résumé so the
+// download link never 404s.
+const LEADERSHIP_SOURCES = [
+  'Keshav-Resume-Management.pdf',
+  'Keshav Krishan Sharma – Resume (Management).pdf',
+  'Keshav Krishan Sharma – Resume (Leadership).pdf',
+  'resume-leadership.pdf',
+  'resume-management.pdf'
+];
+const leadershipDest = path.join(PUBLIC_ROOT, 'resume-leadership.pdf');
+const leadershipSrc = LEADERSHIP_SOURCES.map((s) => path.join(ROOT, s)).find(
+  (p) => fs.existsSync(p)
+);
+try {
+  if (leadershipSrc) {
+    fs.copyFileSync(leadershipSrc, leadershipDest);
+    console.log(`[setup-assets] copied leadership résumé -> resume-leadership.pdf`);
+  } else if (fs.existsSync(path.join(PUBLIC_ROOT, 'resume.pdf'))) {
+    fs.copyFileSync(path.join(PUBLIC_ROOT, 'resume.pdf'), leadershipDest);
+    console.log(
+      `[setup-assets] no leadership résumé found — fell back to resume.pdf`
+    );
+  }
+} catch (err) {
+  console.error(`[setup-assets] leadership résumé: ${err.message}`);
 }
 
 console.log(`[setup-assets] done. copied=${copied} skipped=${skipped}`);

@@ -73,6 +73,23 @@ body {
   border-color: rgb(var(--border));
 }
 
+/* Interactive affordance + visible keyboard focus (a11y — design review §1).
+   Buttons/links get a pointer; focus-visible draws an accent ring that works
+   in every theme and persona world since it reads the live --accent token. */
+button:not(:disabled),
+[role='button']:not([aria-disabled='true']),
+a[href],
+summary,
+label[for] {
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid rgb(var(--accent));
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
 ::selection {
   background: rgb(var(--accent) / 0.35);
   color: rgb(var(--fg));
@@ -268,4 +285,197 @@ html {
 @media (max-width: 640px) {
   html { scroll-padding-top: 72px; }
   .aurora-blob { filter: blur(60px); }
+}
+
+/* ============================================================
+   Persona Worlds — scoped theme tokens
+   Each world is a <div data-world="…"> that re-colours every
+   existing glass / chip / btn utility for its subtree.
+   .world-root paints the surface full-bleed.
+   ============================================================ */
+.world-root {
+  position: relative;
+  min-height: 100vh;
+  background: rgb(var(--bg));
+  color: rgb(var(--fg));
+  isolation: isolate;
+}
+
+/* 🛠️ Engineer — terminal / near-black, emerald + cyan */
+[data-world='engineer'] {
+  --bg: 7 10 14;
+  --surface: 13 18 25;
+  --glass: 17 23 31;
+  --border: 31 43 54;
+  --fg: 222 238 232;
+  --muted: 122 142 150;
+  --accent: 52 211 153;
+  --accent-2: 34 211 238;
+  --accent-3: 129 140 248;
+  --glass-alpha: 0.5;
+  --aurora-1: 16 185 129;
+  --aurora-2: 14 165 233;
+  --aurora-3: 99 102 241;
+  --grain-opacity: 0.05;
+  color-scheme: dark;
+}
+
+/* 📊 Strategist — boardroom navy, gold + steel blue */
+[data-world='strategist'] {
+  --bg: 9 14 28;
+  --surface: 16 23 42;
+  --glass: 19 27 48;
+  --border: 40 52 82;
+  --fg: 236 240 250;
+  --muted: 150 162 192;
+  --accent: 212 175 95;
+  --accent-2: 96 165 250;
+  --accent-3: 199 210 254;
+  --glass-alpha: 0.5;
+  --aurora-1: 202 160 70;
+  --aurora-2: 59 130 246;
+  --aurora-3: 30 58 138;
+  --grain-opacity: 0.04;
+  color-scheme: dark;
+}
+
+/* 🎨 Designer — warm studio cream, coral + amber (light) */
+[data-world='designer'] {
+  --bg: 252 247 240;
+  --surface: 255 252 247;
+  --glass: 255 255 255;
+  --border: 234 222 207;
+  --fg: 38 28 24;
+  --muted: 126 106 96;
+  --accent: 244 114 80;
+  --accent-2: 245 158 11;
+  --accent-3: 219 78 138;
+  --glass-alpha: 0.7;
+  --aurora-1: 251 146 110;
+  --aurora-2: 251 191 36;
+  --aurora-3: 244 114 182;
+  --grain-opacity: 0.03;
+  color-scheme: light;
+}
+
+/* ---------- Doors landing canvas (self-contained dark palette) ---------- */
+.door-canvas {
+  /* Fixed, elegant tokens so the landing looks identical regardless of the
+     visitor's saved theme. The three accents nod to the three worlds. */
+  --surface: 18 20 28;
+  --glass: 22 24 34;
+  --border: 44 48 64;
+  --fg: 237 238 245;
+  --muted: 150 154 172;
+  --accent: 129 140 248; /* indigo */
+  --accent-2: 52 211 153; /* emerald — Engineer */
+  --accent-3: 244 114 80; /* coral — Designer */
+  --glass-alpha: 0.5;
+  --grain-opacity: 0.05;
+
+  position: relative;
+  min-height: 100vh;
+  background:
+    radial-gradient(900px 520px at 50% -8%, rgb(120 130 255 / 0.14), transparent 62%),
+    radial-gradient(700px 460px at 12% 110%, rgb(52 211 153 / 0.10), transparent 60%),
+    radial-gradient(700px 460px at 88% 110%, rgb(244 114 80 / 0.10), transparent 60%),
+    rgb(8 9 13);
+  color: rgb(var(--fg));
+  isolation: isolate;
+}
+
+/* Monogram mark — the unifying thread across worlds */
+.monogram {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Circle-reveal morph overlay sits above everything */
+.morph-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+}
+
+/* Terminal-flavoured helpers (Engineer world) */
+.font-mono-tight {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  letter-spacing: -0.01em;
+}
+
+/* ============================================================
+   Print stylesheet — clean, ink-friendly /resume on paper/PDF.
+   Strips dark themes, decorative chrome and floating UI; keeps
+   content readable in black-on-white with sensible page breaks.
+   ============================================================ */
+@media print {
+  :root,
+  [data-theme='light'],
+  [data-theme='dark'],
+  [data-theme='creative'] {
+    --bg: 255 255 255;
+    --surface: 255 255 255;
+    --glass: 255 255 255;
+    --border: 210 210 210;
+    --fg: 17 17 17;
+    --muted: 80 80 80;
+    --glass-alpha: 1;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+    color: #111 !important;
+  }
+
+  /* Hide decorative + interactive-only chrome */
+  .aurora-blob,
+  .grain,
+  .cursor-dot,
+  .cursor-ring,
+  nav,
+  .fixed,
+  .btn,
+  .btn-primary {
+    display: none !important;
+  }
+
+  /* Flatten glass cards to plain bordered boxes */
+  .glass,
+  .glass-strong {
+    background: #fff !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+    border: 1px solid #ddd !important;
+  }
+
+  a {
+    color: #111 !important;
+    text-decoration: none !important;
+  }
+
+  /* Keep cards, figures and list items intact across page breaks */
+  .glass,
+  .glass-strong,
+  figure,
+  li {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  section {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+
+  /* No animation while printing */
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
 }

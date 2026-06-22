@@ -5,19 +5,18 @@ export const profile = {
   name: 'Keshav Krishan Sharma',
   shortName: 'Keshav',
   initials: 'KK',
-  // Used in the Hero portrait + About + OG share image.
-  // Drop a square photo at public/images/portrait.jpg (see README → Images).
-  portrait: '/images/portrait.jpg',
+  portrait: '/images/persona/portrait-real.jpg',
+  doodlePortrait: '/images/persona/developer-avatar.jpg',
   titleRotator: [
-    'Solutions Architect',
-    'Systems Architect',
-    'Technical Lead',
     'Full-Stack Engineer',
-    'Product-minded Engineer',
-    'Gen-AI Developer'
+    'Solutions Architect',
+    'Technical Lead',
+    'Aspiring Product Manager',
+    'Gen-AI Explorer',
+    'Systems Architect'
   ],
   tagline:
-    'I architect multi-tenant, audit-grade enterprise platforms — from database schema to React UI — built to standardize across every university in India.',
+    'I write the schema, design the API, and ship the React UI — 3.5 years building the production systems running higher education across India.',
   location: 'Ghaziabad, India',
   email: 'keshavkrishansharmaofficial@gmail.com',
   phone: '+91-9911220507',
@@ -26,18 +25,18 @@ export const profile = {
   siteUrl: 'https://keshavkrishansharma.com',
   socials: {
     linkedin: 'https://linkedin.com/in/keshav-krishan',
-    github: 'https://github.com/keshavkr'
+    github: 'https://github.com/KeshavKrishanSharma'
   },
   about: [
-    "I'm a Solutions Architect & Technical Lead who builds national-scale systems for India's higher-education sector. Inside the Samarth eGov ecosystem — a Ministry of Education platform serving universities across India — I've designed and built four enterprise modules largely from scratch: MPDD, Affiliation, Estate, and Residence Allocation.",
-    "I work end-to-end: I sit with university stakeholders to gather real requirements, then translate that complexity into clean schemas, RBAC models, state machines, and audit trails — systems engineered for scale, flexibility, and reuse so one codebase can serve every institution without forking.",
-    "Off the clock I'm a Prompt Engineer and Gen-AI developer, currently going deep on Agentic AI — tool-using agents, evals, and orchestration. Tech evolves; I evolve with it. The learning path never ends."
+    "Full-stack engineer, 3.5 years. I build the systems that run higher education across India — four enterprise modules on Samarth, the Ministry of Education's national university platform, owned end to end from PHP/Yii2 backends and MySQL to the React UI that university staff use every day.",
+    "My work is the full stack: I gather requirements directly from institutions, translate complex rules into clean data models and state machines, then ship the UI. Multi-tenant from day one, RBAC-secured, audit-grade by design — one codebase, zero forks, every university.",
+    "Now I'm growing. I want to move into Product Management — I've spent 3.5 years at the intersection of user needs, engineering tradeoffs, and real deployment; I'm ready to own the product, not just the code. I'm also diving into Gen AI and LLMs as a beginner, and I'm completely fine with that — I learn by building, breaking, and going again. Eat, sleep, learn, repeat. And rest. The path never ends."
   ]
 };
 
 export const stats = [
   { value: '4', label: 'Enterprise Modules' },
-  { value: '3+', label: 'Years Experience' },
+  { value: '3.5+', label: 'Years Experience' },
   { value: '11', label: 'State Workflow Engine' },
   { value: '14', label: 'RBAC Permission Verbs' }
 ];
@@ -45,10 +44,10 @@ export const stats = [
 export const experience = [
   {
     company: 'Smarth eGov × Ministry of Education (Samarth)',
-    role: 'Solutions Architect & Technical Lead · Full-Stack & Platform Architecture',
-    period: '2023 – Present',
+    role: 'Full-Stack Engineer & Solutions Architect · Growing into Product & Gen AI',
+    period: '2023 – Present · 3 years',
     bullets: [
-      'Architected and built four enterprise modules from scratch — MPDD (material distribution), Affiliation, Estate, and Residence Allocation — for a national university platform, owning each from requirement discovery to production architecture.',
+      'Built four enterprise modules end to end (schema, API, React UI) from scratch — MPDD, Affiliation, Estate, and Residence Allocation — for India\'s national university platform, owning every layer from requirement discovery to production.',
       'Designed a multi-tenant foundation (institution-scoped data isolation) so a single codebase serves universities across India with zero cross-institution data leakage.',
       'Built a FIFO inventory engine with a 4-bucket stock invariant routed through a single atomic mutator — eliminating stock corruption and double-allocation under high-volume load (200+ daily issues).',
       'Engineered an 11-state allocation workflow with append-only audit logging and idempotent, time-boxed reservations; designed a 14-verb RBAC system with cloneable role templates and a "view-as-role" inspector.',
@@ -58,8 +57,8 @@ export const experience = [
   },
   {
     company: 'Smarth eGov',
-    role: 'Programmer Intern · Backend Engineering',
-    period: '2022',
+    role: 'Software Engineering Intern · Backend',
+    period: 'Jan – Jun 2022 · 6 months',
     bullets: [
       'Developed backend modules in PHP (Yii2) and optimised complex SQL queries — improved API response times by ~30%.',
       'Collaborated with the product team to design RESTful endpoints powering real-time institutional dashboards.'
@@ -112,7 +111,7 @@ export const projects: Project[] = [
     ],
     impact: ['Built from scratch', 'Multi-tenant · national scale', 'Audit-grade workflows', '200+ daily issues'],
     tags: ['Yii2', 'React 19', 'TypeScript', 'MySQL', 'RBAC', 'Multi-tenant'],
-    image: '/images/mpdd-dashboard.jpg',
+    image: '/images/mpdd/dashboard.png',
     accent: 'from-violet-500 to-fuchsia-500'
   },
   {
@@ -135,7 +134,7 @@ export const projects: Project[] = [
     ],
     impact: ['100+ universities', 'Faster approvals', 'Full audit trail'],
     tags: ['Yii2', 'React', 'PostgreSQL', 'RBAC', 'Workflow Engine'],
-    image: '/images/affiliation-dashboard.jpg',
+    image: '/images/affiliation/dashboard.png',
     accent: 'from-cyan-500 to-blue-500'
   },
   {
@@ -156,7 +155,7 @@ export const projects: Project[] = [
     ],
     impact: ['Conflict auto-detection', 'Faster allocation'],
     tags: ['React', 'Next.js', 'Yii2', 'MySQL'],
-    image: '/images/estate-dashboard.jpg',
+    image: '/images/estate/dashboard.png',
     accent: 'from-emerald-500 to-teal-500'
   },
   {
@@ -177,8 +176,40 @@ export const projects: Project[] = [
     ],
     impact: ['Rule-driven', 'Session-aware', 'Auditable'],
     tags: ['React', 'Yii2', 'MySQL', 'RBAC'],
-    image: '/images/ehousing-dashboard.jpg',
+    image: '/images/residence/dashboard.png',
     accent: 'from-amber-500 to-orange-500'
+  },
+  {
+    title: 'Multi-Modal Evidence Review',
+    role: 'AI Engineer · HackerRank Orchestrate',
+    category: 'AI · Computer Vision',
+    featured: true,
+    summary:
+      'An AI system that verifies insurance damage claims by reasoning over submitted photos, the claim conversation, and user history — deciding whether the image evidence supports, contradicts, or is insufficient for the claim, and classifying the damage type, part, severity, and fraud/quality risks.',
+    problem:
+      'Claims arrive as messy multimodal bundles: several photos of uneven quality, a free-text chat, and a user risk history. A reviewer has to decide whether the images actually prove the stated damage, resist prompt-injection text hidden inside images, and stay consistent and auditable across thousands of cases.',
+    architecture: [
+      'Typed ingestion layer with null-safe joins across claims, user history, and a minimum evidence-requirements checklist.',
+      'An OpenCV quality gate runs first and spends zero tokens — rejecting blurry, cropped, or low-light images before any model call.',
+      'A single Claude vision call per row at temperature 0 returns strict JSON — the model "reports what it sees, it does not decide".',
+      'A deterministic, injection-proof decision engine makes the verdict: it matches the claim against evidence rules, unions the risk flags, and resolves supported / contradicted / not_enough_information.',
+      'An output layer emits the exact 14-column schema, enum-snapped and validated, to output.csv.'
+    ],
+    decisions: [
+      'Separated perception from judgement so the LLM never owns the verdict — the rule engine is authoritative and resistant to text injected inside images.',
+      'Disk-cached model calls + temperature 0 make runs reproducible and cheap to re-execute; retries with backoff and a TPM/RPM semaphore keep it inside rate limits.',
+      'Evaluated on the labelled sample set with precision / recall, plus a token, cost, and latency analysis, before scoring the blind test set.'
+    ],
+    impact: [
+      'Vision-LLM + deterministic engine',
+      'One cached call per row',
+      '14-field structured output',
+      'Eval: precision / recall'
+    ],
+    tags: ['Python', 'Claude Vision (VLM)', 'OpenCV', 'Rule Engine', 'Evaluation', 'Injection-safe'],
+    image: '/images/hackathon-pipeline.svg',
+    accent: 'from-emerald-500 to-cyan-500',
+    href: 'https://github.com/KeshavKrishanSharma/hackerRankContest'
   },
   {
     title: 'MavenEstate.in — Real Estate Platform',
@@ -189,6 +220,7 @@ export const projects: Project[] = [
       'Premium real-estate site delivered for a freelance client — property listings, lead capture, and a responsive landing experience tuned for conversions.',
     impact: ['Live in production', 'Mobile-first'],
     tags: ['React', 'Tailwind', 'Node.js'],
+    image: '/images/maven/home.png',
     accent: 'from-rose-500 to-pink-500',
     href: 'https://mavenestate.in'
   },
@@ -213,6 +245,7 @@ export const projects: Project[] = [
       'Car-rental booking interface — vehicle listings, filtering, and a clean responsive booking flow.',
     impact: ['Live', 'Responsive'],
     tags: ['React', 'Firebase', 'CSS'],
+    image: '/images/carrental/home.png',
     accent: 'from-sky-500 to-cyan-500',
     href: 'https://car-rental-site-5150e.web.app/'
   },
@@ -225,6 +258,7 @@ export const projects: Project[] = [
       'A pixel-faithful, fully responsive clone of the Airbnb landing experience — an exercise in precise layout and component fidelity.',
     impact: ['Live', 'Pixel-accurate'],
     tags: ['React', 'Tailwind', 'Responsive'],
+    image: '/images/airbnb/home.png',
     accent: 'from-rose-500 to-orange-500',
     href: 'https://airbnbsinglepageclone.web.app/'
   }
