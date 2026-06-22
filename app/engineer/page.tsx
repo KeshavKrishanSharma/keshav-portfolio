@@ -3,7 +3,9 @@ import WorldShell from '@/components/world/WorldShell';
 import WorldHero from '@/components/world/WorldHero';
 import ArchitectureMap from '@/components/world/ArchitectureMap';
 import AllocationMachine from '@/components/world/AllocationMachine';
-import Showcase from '@/components/world/Showcase';
+import AffiliationEngine from '@/components/world/AffiliationEngine';
+import ProjectShowcase from '@/components/world/ProjectShowcase';
+import PlatformBand from '@/components/world/PlatformBand';
 import { worldById } from '@/lib/worlds';
 import { enterpriseGalleries } from '@/lib/gallery';
 import { profile } from '@/lib/data';
@@ -22,10 +24,12 @@ export default function EngineerWorld() {
       <WorldHero worldId="engineer" />
       <ArchitectureMap />
       <AllocationMachine />
-      <Showcase
+      <AffiliationEngine />
+      <PlatformBand />
+      <ProjectShowcase
         eyebrow="// case studies"
         title="Built and shipped"
-        blurb="Real screens from the four modules — sanitised, no institution data. Browse by module."
+        blurb="Four enterprise modules, built largely solo inside a 20+ module national platform. Open any card for the screens."
         galleries={enterpriseGalleries}
       />
     </WorldShell>

@@ -55,15 +55,15 @@ export const worlds: World[] = [
     accent: '#34d399', // emerald
     resume: TECH_RESUME,
     hero: {
-      kicker: '// full-stack engineer & architect · 3.5 years',
-      headline: 'I own the full stack — PHP/Yii2, REST APIs, and React UI — for systems running 100+ universities.',
-      sub: '3.5 years shipping enterprise software end to end: PHP/Yii2 backends, MySQL, REST APIs, and React 19 TypeScript frontends — multi-tenant, audit-grade, built for the systems that run India\'s national university platform.',
+      kicker: '// Software Developer C · full-stack & systems architect',
+      headline: 'I own the full stack — schema to React UI — for systems running 100+ universities.',
+      sub: 'Promoted to Software Developer C, Jan 2025. Sole architect on 4 enterprise modules of Samarth, the Ministry of Education\'s national platform: PHP/Yii2, MySQL, REST APIs, React 19 TypeScript — multi-tenant, audit-grade, built for national scale.',
       cta: 'Open the terminal'
     },
     proof: [
       { value: '4', label: 'modules, schema to UI' },
       { value: '11', label: 'state allocation engine' },
-      { value: '3.5', label: 'years in production' }
+      { value: '3.5+', label: 'yrs · promoted Jan 2025' }
     ]
   },
   {
@@ -72,20 +72,20 @@ export const worlds: World[] = [
     name: 'Strategist',
     doorTitle: 'The Strategist',
     doorNeed: 'You need someone who delivers — not just codes.',
-    vibe: 'Ownership · delivery · team',
+    vibe: 'Ownership · delivery · trajectory',
     glyph: '📊',
     accent: '#d4af5f', // gold
     resume: LEADERSHIP_RESUME,
     hero: {
-      kicker: 'Engineering leadership · 3.5 years',
-      headline: '3.5 years. Four platforms. One engineer who owned the brief, the architecture, and the ship.',
-      sub: 'I partner directly with the Ministry of Education and 100+ universities — gathering real requirements, designing the systems, and mentoring the engineers who keep them running.',
-      cta: 'See the impact'
+      kicker: 'Software Developer C · architect in the making · aspiring PM',
+      headline: 'Intern. Jr Developer. Software Developer C. A title that still undersells what I own.',
+      sub: 'Jan 2023 to now — sole full-stack architect on 4 of 20+ modules on a national government platform, translating Ministry of Education mandates directly into production systems. Growing toward Product Management and Gen AI engineering.',
+      cta: 'See the trajectory'
     },
     proof: [
+      { value: '2', label: 'promotions in 3.5 yrs' },
       { value: '100+', label: 'universities served' },
-      { value: '45%', label: 'faster turnaround' },
-      { value: '4+', label: 'engineers mentored' }
+      { value: '4', label: 'modules owned end to end' }
     ]
   },
   {
@@ -99,15 +99,15 @@ export const worlds: World[] = [
     accent: '#f47250', // coral
     resume: TECH_RESUME,
     hero: {
-      kicker: 'Design engineer',
+      kicker: 'Design engineer · operator-first UX · 5+ certifications',
       headline: "Government software doesn't have to feel like government software.",
-      sub: 'I design for real operators — non-technical staff who need forms, flows, and dashboards they can finish without a manual. UX measured by adoption, not screenshots.',
+      sub: 'I design for real operators — non-technical staff navigating these systems every day. UX grounded in direct requirement discovery, not assumptions. Certified in product design, UX, and design thinking (Simplilearn, Accenture, Le Wagon, CPD).',
       cta: 'Step into the studio'
     },
     proof: [
       { value: '5+', label: 'UX certifications' },
       { value: '4', label: 'enterprise products designed' },
-      { value: '100+', label: 'institutions using the UX' }
+      { value: '3', label: 'client projects shipped' }
     ]
   }
 ];

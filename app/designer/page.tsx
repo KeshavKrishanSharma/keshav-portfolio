@@ -2,8 +2,9 @@ import type { Metadata } from 'next';
 import WorldShell from '@/components/world/WorldShell';
 import WorldHero from '@/components/world/WorldHero';
 import BeforeAfter from '@/components/world/BeforeAfter';
+import DesignProcess from '@/components/world/DesignProcess';
+import ProjectShowcase from '@/components/world/ProjectShowcase';
 import DesignSystemShowcase from '@/components/world/DesignSystemShowcase';
-import Showcase from '@/components/world/Showcase';
 import { worldById } from '@/lib/worlds';
 import { enterpriseGalleries, clientGalleries } from '@/lib/gallery';
 import { profile } from '@/lib/data';
@@ -21,12 +22,12 @@ export default function DesignerWorld() {
     <WorldShell worldId="designer">
       <WorldHero worldId="designer" />
       <BeforeAfter />
-      <Showcase
+      <DesignProcess />
+      <ProjectShowcase
         eyebrow="The gallery"
-        title="Screens, up close"
-        blurb="Enterprise modules and client builds — tap a tab to switch projects."
+        title="Things I've shipped"
+        blurb="Enterprise modules open a screen carousel; client builds link straight to the live site."
         galleries={[...enterpriseGalleries, ...clientGalleries]}
-        tilted
       />
       <DesignSystemShowcase />
     </WorldShell>

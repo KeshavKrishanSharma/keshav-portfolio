@@ -95,13 +95,16 @@ export default function WorldHero({ worldId }: { worldId: WorldId }) {
             {world.hero.sub}
           </motion.p>
 
-          {/* Proof chips */}
-          <motion.div
-            {...fadeUp(0.24)}
-            className="mt-8 grid grid-cols-3 gap-3 sm:gap-4"
-          >
-            {world.proof.map((p) => (
-              <div key={p.label} className="glass rounded-2xl px-4 py-5">
+          {/* Proof chips — staggered */}
+          <div className="mt-8 grid grid-cols-3 gap-3 sm:gap-4">
+            {world.proof.map((p, i) => (
+              <motion.div
+                key={p.label}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.24 + i * 0.09, ease: [0.16, 1, 0.3, 1] }}
+                className="glass rounded-2xl px-4 py-5"
+              >
                 <div
                   className="font-display text-2xl font-bold tracking-tight sm:text-3xl"
                   style={{ color: 'rgb(var(--accent))' }}
@@ -109,9 +112,9 @@ export default function WorldHero({ worldId }: { worldId: WorldId }) {
                   <ProofCounter value={p.value} />
                 </div>
                 <div className="mt-1.5 text-xs leading-snug text-muted">{p.label}</div>
-              </div>
+              </motion.div>
             ))}
-          </motion.div>
+          </div>
 
           {/* World-specific flourish */}
           <motion.div {...fadeUp(0.32)} className="mt-10">
@@ -120,12 +123,20 @@ export default function WorldHero({ worldId }: { worldId: WorldId }) {
             {worldId === 'designer'   && <StudioCard />}
           </motion.div>
 
-          {/* "In this world" chips */}
+          {/* "In this world" chips — staggered */}
           <motion.div {...fadeUp(0.4)} className="mb-8 mt-12">
             <p className="text-xs uppercase tracking-[0.2em] text-muted">In this world</p>
             <div className="mt-4 flex flex-wrap gap-2.5">
-              {EXPLORE[worldId].map((label) => (
-                <span key={label} className="chip">{label}</span>
+              {EXPLORE[worldId].map((label, i) => (
+                <motion.span
+                  key={label}
+                  initial={{ opacity: 0, scale: 0.85 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4, delay: 0.45 + i * 0.07, ease: [0.16, 1, 0.3, 1] }}
+                  className="chip"
+                >
+                  {label}
+                </motion.span>
               ))}
             </div>
           </motion.div>
@@ -155,23 +166,29 @@ function WorldPortrait({ worldId, world }: { worldId: WorldId; world: World }) {
         style={{ background: 'rgb(var(--accent))' }}
       />
 
-      {/* Main portrait */}
-      <div
-        className="relative overflow-hidden rounded-3xl border"
-        style={{ borderColor: 'rgb(var(--accent) / 0.4)' }}
-      >
-        <img
-          src={WORLD_PORTRAIT[worldId]}
-          alt={`Keshav — ${world.name}`}
-          className="aspect-[3/4] w-full object-cover object-top"
-        />
-        {/* Bottom fade to mask any AI background text */}
+      {/* Main visual — Strategist gets a metrics graphic instead of a photo */}
+      {worldId === 'strategist' ? (
+        <StrategistGraphic />
+      ) : (
         <div
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-24"
-          style={{ background: 'linear-gradient(to top, rgb(var(--bg)), transparent)' }}
-        />
-      </div>
+          className="relative overflow-hidden rounded-3xl border"
+          style={{ borderColor: 'rgb(var(--accent) / 0.4)' }}
+        >
+          <img
+            src={WORLD_PORTRAIT[worldId]}
+            alt={`Keshav — ${world.name}`}
+            className="aspect-[3/4] w-full object-cover object-top"
+          />
+          {/* Bottom fade to mask any AI background text */}
+          <div
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-24"
+            style={{ background: 'linear-gradient(to top, rgb(var(--bg)), transparent)' }}
+          />
+        </div>
+      )}
 
+      {worldId !== 'strategist' && (
+      <>
       {/* Floating chip — top-left */}
       <motion.div
         initial={{ opacity: 0, scale: 0.75 }}
@@ -217,7 +234,83 @@ function WorldPortrait({ worldId, world }: { worldId: WorldId; world: World }) {
           <div className="mt-0.5 text-xs text-muted">{p1.label}</div>
         </motion.div>
       </motion.div>
+      </>
+      )}
     </motion.div>
+  );
+}
+
+/* ── Strategist: a "trajectory" growth chart (replaces the photo) ───────── */
+function StrategistGraphic() {
+  const steps = [
+    { y: '22', h: 26 },
+    { y: '23', h: 46 },
+    { y: '24', h: 66 },
+    { y: '25', h: 84 },
+    { y: '26', h: 100 }
+  ];
+  return (
+    <div
+      className="relative flex aspect-[3/4] w-full flex-col overflow-hidden rounded-3xl border bg-surface p-6"
+      style={{ borderColor: 'rgb(var(--accent) / 0.4)' }}
+    >
+      <div className="flex items-center justify-between">
+        <p className="text-xs uppercase tracking-[0.2em]" style={{ color: 'rgb(var(--accent))' }}>
+          Trajectory
+        </p>
+        <span className="h-2 w-2 animate-pulse rounded-full" style={{ background: 'rgb(var(--accent))' }} />
+      </div>
+      <p className="mt-1.5 font-display text-lg font-bold leading-tight">
+        Intern → Solutions Architect
+      </p>
+
+      <div className="mt-6 flex flex-1 flex-col">
+        <div className="relative flex-1">
+          <svg
+            viewBox="0 0 100 100"
+            preserveAspectRatio="none"
+            className="absolute inset-0 h-full w-full"
+          >
+            <defs>
+              <linearGradient id="strat-bar" x1="0" y1="1" x2="0" y2="0">
+                <stop offset="0%" stopColor="rgb(var(--accent) / 0.35)" />
+                <stop offset="100%" stopColor="rgb(var(--accent))" />
+              </linearGradient>
+            </defs>
+            {steps.map((s, i) => {
+              const slot = 100 / steps.length;
+              const bw = 9;
+              const x = slot * i + (slot - bw) / 2;
+              return (
+                <motion.rect
+                  key={s.y}
+                  x={x}
+                  width={bw}
+                  rx={1.2}
+                  fill="url(#strat-bar)"
+                  initial={{ height: 0, y: 100 }}
+                  animate={{ height: s.h, y: 100 - s.h }}
+                  transition={{ duration: 0.8, delay: 0.3 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                />
+              );
+            })}
+          </svg>
+        </div>
+        <div className="mt-2 flex">
+          {steps.map((s) => (
+            <span key={s.y} className="flex-1 text-center text-[10px] text-muted">
+              &apos;{s.y}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-4 border-t pt-3" style={{ borderColor: 'rgb(var(--border))' }}>
+        <p className="text-xs leading-snug text-muted">
+          3.5 yrs · sole architect on 4 of a 20+ module national platform
+        </p>
+      </div>
+    </div>
   );
 }
 

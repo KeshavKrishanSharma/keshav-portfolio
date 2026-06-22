@@ -6,7 +6,7 @@ export const profile = {
   shortName: 'Keshav',
   initials: 'KK',
   portrait: '/images/persona/portrait-real.jpg',
-  doodlePortrait: '/images/persona/developer-avatar.jpg',
+  doodlePortrait: '/images/persona/portrait-doodle.jpg',
   titleRotator: [
     'Full-Stack Engineer',
     'Solutions Architect',
@@ -44,15 +44,26 @@ export const stats = [
 export const experience = [
   {
     company: 'Smarth eGov × Ministry of Education (Samarth)',
-    role: 'Full-Stack Engineer & Solutions Architect · Growing into Product & Gen AI',
-    period: '2023 – Present · 3 years',
+    role: 'Software Developer C · Full-Stack & Systems Architecture',
+    period: 'Jan 2025 – Present · 1.5 yrs',
     bullets: [
-      'Built four enterprise modules end to end (schema, API, React UI) from scratch — MPDD, Affiliation, Estate, and Residence Allocation — for India\'s national university platform, owning every layer from requirement discovery to production.',
-      'Designed a multi-tenant foundation (institution-scoped data isolation) so a single codebase serves universities across India with zero cross-institution data leakage.',
-      'Built a FIFO inventory engine with a 4-bucket stock invariant routed through a single atomic mutator — eliminating stock corruption and double-allocation under high-volume load (200+ daily issues).',
-      'Engineered an 11-state allocation workflow with append-only audit logging and idempotent, time-boxed reservations; designed a 14-verb RBAC system with cloneable role templates and a "view-as-role" inspector.',
-      'Drove direct client & stakeholder requirement-gathering, then led a v1→v2 re-architecture that removed years of technical debt and standardised UX for non-technical operators.',
-      'Mentored junior engineers, ran code reviews, and set documentation and architecture-decision standards across modules.'
+      'Promoted to Software Developer C — a title that still undersells the scope: sole end-to-end architect on 4 of the platform\'s 20+ enterprise modules, owning everything from blank schema to production.',
+      'Designed the Affiliation automatic fee & billing engine — fee heads configured once per affiliation-type × institution × programme-type; the engine resolves programmes→courses→subjects, prices by basis (flat / per-course / per-subject), applies date-windowed late fees, and emits a fully itemized bill without human intervention.',
+      'Engineered a streaming Excel→S3 background export queue (yii\\queue + PhpSpreadsheet, 25k rows/sheet, GC + 85% memory-threshold guard, S3 retry/backoff, live cron progress) — hundreds of colleges export without OOM.',
+      'Translated Ministry of Education mandates directly into data models and shipped them — no PM layer, just engineer to stakeholder to production.',
+      'Set architecture, code-review, and documentation standards; mentored junior engineers across all modules.'
+    ]
+  },
+  {
+    company: 'Smarth eGov × Ministry of Education (Samarth)',
+    role: 'Junior Software Developer · Full-Stack',
+    period: 'Jan 2023 – Jan 2025 · 2 yrs',
+    bullets: [
+      'Built MPDD from scratch: FIFO inventory (4-bucket stock invariant, single atomic mutator, 200+ daily issues), 11-state allocation engine with append-only audit log, procurement pipeline (PR→PO→GRN), barcode/QR label designer, and bulk Excel import.',
+      'Built the Estate module: hierarchical asset register (building→floor→room→washroom), scenario-driven 4-step building form, ARMO civil-works quotations & repair estimates, C3.js/D3 analytics dashboard, bulk import.',
+      'Built eHousing: employee accommodation allocation composing Estate\'s housing register and Employee profiles — true cross-module integration without data duplication; bulk import.',
+      'Designed the platform\'s multi-tenant foundation — institution-scoped data isolation so one codebase serves every university with zero cross-tenant leakage.',
+      'Led v1→v2 re-architecture — removed years of technical debt, standardised UX for non-technical operators, unified API patterns and bulk-import patterns across all modules.'
     ]
   },
   {
@@ -60,7 +71,7 @@ export const experience = [
     role: 'Software Engineering Intern · Backend',
     period: 'Jan – Jun 2022 · 6 months',
     bullets: [
-      'Developed backend modules in PHP (Yii2) and optimised complex SQL queries — improved API response times by ~30%.',
+      'Developed backend modules in PHP/Yii2 and optimised complex SQL queries — improved API response times by ~30%.',
       'Collaborated with the product team to design RESTful endpoints powering real-time institutional dashboards.'
     ]
   }
@@ -116,66 +127,74 @@ export const projects: Project[] = [
   },
   {
     title: 'Affiliation & Compliance Platform',
-    role: 'Solutions Architect · Governance & Compliance',
-    category: 'Enterprise · Workflow Automation',
+    role: 'Solutions Architect · Regulatory Workflow Automation',
+    category: 'Enterprise · Regulatory Compliance',
     featured: true,
     summary:
-      'Affiliation lifecycle and regulatory-compliance platform turning complex university statutes into configurable, multi-stage approval workflows with full auditability.',
+      'Regulatory affiliation lifecycle for colleges seeking university affiliation — automatic fee & billing engine, committee inspection workspaces, statutory reporting, and a streaming Excel→S3 export queue. 63 models, 30+ controllers.',
     problem:
-      'University affiliation involves dense, institution-specific regulations, multi-party approvals, and document verification — historically handled over email and spreadsheets, with no audit trail and slow turnaround.',
+      'Affiliation involves dense per-institution regulations, multi-party committee inspections, and complex fee structures historically handled over email — no audit trail, slow turnaround, and manual billing that introduced errors.',
     architecture: [
-      'Configurable rule engine that encodes per-institution regulations without code changes.',
-      'Multi-stage approval workflows with role-based routing, document verification, and append-only audit trails that hold up to inspection.',
-      'Multi-tenant, RBAC-secured architecture shared with the wider Samarth platform for consistent access control.'
+      'Automatic fee & billing engine: fee heads configured once per affiliation-type × institution × programme-type with a basis (flat / per-course / per-subject); the engine resolves programmes→courses→subjects, prices each head, applies date-windowed late fees, and emits an itemized afm_application_bill with grand_total — zero manual entry.',
+      'Background job queue (yii\\queue): streaming PhpSpreadsheet XLSX export, 25k rows/sheet, chunked flush, GC + 85%-memory-threshold guard, S3 retry/backoff, live cron progress tracker.',
+      'Committee workspace: configurable audit/inspection forms, scoring, provisional certificates (A/B).',
+      'Programme→course→subject & discipline→OU→faculty mapping engines; per-programme intake-capacity configuration.',
+      'Bulk import pipeline across all master entities; affiliation summary reporting year-ranged by organisation or programme.'
     ],
     decisions: [
-      'Modelled approvals as explicit, logged state transitions rather than ad-hoc status flags — every action is attributable and reversible.',
-      'Standardised the API envelope and validation so the same patterns scale across modules.'
+      'Fee heads are configured data, not code — a policy change is an admin action, not a deployment.',
+      'Export runs off the request thread: job queue means no user waits for a multi-MB download, and the 85% memory guard prevents OOM on large institution data sets.'
     ],
-    impact: ['100+ universities', 'Faster approvals', 'Full audit trail'],
-    tags: ['Yii2', 'React', 'PostgreSQL', 'RBAC', 'Workflow Engine'],
+    impact: ['Automatic billing — zero manual fee entry', '100+ universities', 'Streaming XLSX→S3, OOM-free', 'Full audit trail'],
+    tags: ['Yii2', 'PHP', 'MySQL', 'PhpSpreadsheet', 'AWS S3', 'yii\\queue', 'RBAC'],
     image: '/images/affiliation/dashboard.png',
     accent: 'from-cyan-500 to-blue-500'
   },
   {
-    title: 'Estate & Resource Management',
-    role: 'Full-Stack Architect',
-    category: 'Enterprise · Resource Allocation',
+    title: 'Estate Management System',
+    role: 'Full-Stack Architect · Physical Infrastructure',
+    category: 'Enterprise · Asset Register',
     featured: false,
     summary:
-      'Institutional estate and resource-allocation engine with automated conflict detection — managing physical assets and bookings across departments.',
+      'University physical-infrastructure asset register — buildings, floors, rooms, roads, and civil works — with cost estimation, ARMO repair workflows, C3.js/D3 analytics, and bulk import.',
     problem:
-      'Institutions juggle rooms, equipment, and shared resources with overlapping requests and no single source of truth, causing double-bookings and manual reconciliation.',
+      'University estates span hundreds of buildings, roads, and civil assets with no single source of truth — maintenance was untracked, cost estimates were manual, and the asset hierarchy was inconsistently maintained with no active-state integrity.',
     architecture: [
-      'Centralised resource registry with availability windows and automated conflict detection.',
-      'Role-based allocation flows with approvals and a clear audit of who reserved what, when.'
+      'Hierarchical register: building→floor→room→washroom→house→road→block with integrity-enforced active cascade — a room can only be active if its floor and building are, keeping the register self-consistent.',
+      'Scenario-driven 4-step building form: profile → structural → facilities → cost + geo-tagging.',
+      'ARMO civil-works: abstracts, quotations, repair estimates per work order.',
+      'C3.js/D3 dashboard analytics over MySQL query-builder aggregates; 15+ configurable construction type-masters.',
+      'Bulk import pipeline with row-level validation and error reporting.'
     ],
     decisions: [
-      'Treated conflict detection as a first-class constraint at allocation time rather than a post-hoc report.'
+      'Active-cascade enforced at the model layer, not the application layer — the register is always self-consistent regardless of interface.',
+      'Bulk import with row-level validation and an error report — admins fix and re-upload without re-entering valid rows.'
     ],
-    impact: ['Conflict auto-detection', 'Faster allocation'],
-    tags: ['React', 'Next.js', 'Yii2', 'MySQL'],
+    impact: ['Self-consistent asset register', 'ARMO civil-works tracking', 'D3 analytics dashboard', 'Bulk import'],
+    tags: ['Yii2', 'PHP', 'MySQL', 'C3.js / D3', 'RBAC'],
     image: '/images/estate/dashboard.png',
     accent: 'from-emerald-500 to-teal-500'
   },
   {
-    title: 'Residence Allocation (eHousing)',
-    role: 'Full-Stack Architect',
+    title: 'eHousing — Employee Accommodation',
+    role: 'Full-Stack Architect · Cross-Module Integration',
     category: 'Enterprise · Allocation Engine',
     featured: false,
     summary:
-      'Hostel and residence allocation system — eligibility, room inventory, and rule-driven assignment for university housing at scale.',
+      'University employee quarters allocation — preference-based matching against live housing inventory, with cross-module integration into Estate\'s housing register and the Employee profile system.',
     problem:
-      'Manual hostel allocation is error-prone and contested: eligibility rules, room capacities, and preferences must be reconciled fairly and transparently each session.',
+      'Staff accommodation was allocated manually each cycle: eligibility rules, unit preferences, and vacancy status were tracked in spreadsheets, causing errors, disputes, and no audit of who was allocated what and why.',
     architecture: [
-      'Room/bed inventory model with eligibility rules and session-aware allocation.',
-      'Rule-driven assignment with auditable decisions and RBAC-secured operator actions.'
+      'Composes Estate\'s Housing register and Employee Profiles directly — true cross-module integration, no data duplication.',
+      'Preference-based allocation: house type + choice per employee, matched against vacancy-aware unit status (vacant / allocated / newly-added).',
+      'Rule-driven eligibility, scheme builder, and pay-level tiers; role-scoped admin vs employee dashboards.',
+      'Bulk import, master declarations, eligibility rules, and full activity audit log.'
     ],
     decisions: [
-      'Made allocation rules configurable per institution so policy changes don\'t require redeployment.'
+      'Reads Estate and Employee data rather than copying it — modules compose across the platform instead of forking data and diverging.'
     ],
-    impact: ['Rule-driven', 'Session-aware', 'Auditable'],
-    tags: ['React', 'Yii2', 'MySQL', 'RBAC'],
+    impact: ['Cross-module composition', 'Preference-based allocation', 'Vacancy-aware inventory', 'Auditable decisions'],
+    tags: ['Yii2', 'PHP', 'MySQL', 'RBAC', 'Multi-DB'],
     image: '/images/residence/dashboard.png',
     accent: 'from-amber-500 to-orange-500'
   },

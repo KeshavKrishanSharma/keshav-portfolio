@@ -2,8 +2,10 @@ import type { Metadata } from 'next';
 import WorldShell from '@/components/world/WorldShell';
 import WorldHero from '@/components/world/WorldHero';
 import StatRollup from '@/components/world/StatRollup';
-import Timeline from '@/components/world/Timeline';
 import StakeholderMap from '@/components/world/StakeholderMap';
+import CareerArc from '@/components/world/CareerArc';
+import PlatformBand from '@/components/world/PlatformBand';
+import Timeline from '@/components/world/Timeline';
 import { worldById } from '@/lib/worlds';
 import { profile } from '@/lib/data';
 
@@ -20,7 +22,9 @@ export default function StrategistWorld() {
     <WorldShell worldId="strategist">
       <WorldHero worldId="strategist" />
       <StatRollup />
+      <PlatformBand />
       <StakeholderMap />
+      <CareerArc />
       <Timeline />
     </WorldShell>
   );
