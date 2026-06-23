@@ -5,8 +5,10 @@ export const profile = {
   name: 'Keshav Krishan Sharma',
   shortName: 'Keshav',
   initials: 'KKS',
-  portrait: '/images/persona/portrait-real.jpg',
+  portrait: '/images/persona/my_dp.jpeg',
   doodlePortrait: '/images/persona/portrait-doodle.jpg',
+  currentlyBuilding: 'Gen AI side projects + agentic systems',
+  resumeLeadershipUrl: '/resume-leadership.pdf',
   titleRotator: [
     'Full-Stack Engineer',
     'Solutions Architect',
@@ -17,7 +19,7 @@ export const profile = {
   ],
   tagline:
     'I write the schema, design the API, and ship the React UI — 3.5 years building the production systems running higher education across India.',
-  location: 'Ghaziabad, India',
+  location: 'New Delhi, India',
   email: 'keshavkrishansharmaofficial@gmail.com',
   phone: '+91-9911220507',
   resumeUrl: '/resume.pdf',

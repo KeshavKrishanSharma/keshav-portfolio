@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, useScroll, useTransform, useSpring } from 'framer-motion';
 import Terminal from './Terminal';
 import { worldById, type World, type WorldId } from '@/lib/worlds';
 
@@ -57,12 +57,31 @@ const EXPLORE: Record<WorldId, string[]> = {
   designer:   ['Before / after', 'UI gallery', 'Design system']
 };
 
-/** The persona AI photo for each world — exists in public/images/persona/ */
 const WORLD_PORTRAIT: Record<WorldId, string> = {
-  engineer:   '/images/persona/developer-avatar.jpg',
-  strategist: '/images/persona/strategist-scene.jpg',
+  engineer:   '/images/persona/my_dp.jpeg',
+  strategist: '/images/persona/my_dp.jpeg',
   designer:   '/images/persona/designer-scene.jpg',
 };
+
+function WordReveal({ text }: { text: string }) {
+  const words = text.split(' ');
+  return (
+    <>
+      {words.map((word, i) => (
+        <motion.span
+          key={`${word}-${i}`}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, delay: 0.08 + i * 0.055, ease: [0.16, 1, 0.3, 1] }}
+          className="inline-block"
+          style={{ marginRight: '0.3em' }}
+        >
+          {word}
+        </motion.span>
+      ))}
+    </>
+  );
+}
 
 export default function WorldHero({ worldId }: { worldId: WorldId }) {
   const world = worldById(worldId)!;
@@ -81,12 +100,9 @@ export default function WorldHero({ worldId }: { worldId: WorldId }) {
             {world.hero.kicker}
           </motion.p>
 
-          <motion.h1
-            {...fadeUp(0.08)}
-            className="mt-5 max-w-2xl font-display text-4xl font-bold leading-[1.04] tracking-tight sm:text-5xl xl:text-6xl"
-          >
-            {world.hero.headline}
-          </motion.h1>
+          <h1 className="mt-5 max-w-2xl font-display text-4xl font-bold leading-[1.04] tracking-tight sm:text-5xl xl:text-6xl">
+            <WordReveal text={world.hero.headline} />
+          </h1>
 
           <motion.p
             {...fadeUp(0.16)}
@@ -152,12 +168,16 @@ export default function WorldHero({ worldId }: { worldId: WorldId }) {
 /* ── Portrait column ────────────────────────────────────────────────────── */
 function WorldPortrait({ worldId, world }: { worldId: WorldId; world: World }) {
   const [p0, p1] = world.proof;
+  const { scrollY } = useScroll();
+  const rawY = useTransform(scrollY, [0, 700], [0, -70]);
+  const parallaxY = useSpring(rawY, { stiffness: 60, damping: 20 });
 
   return (
     <motion.div
       initial={{ opacity: 0, x: 32 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.95, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
+      style={{ y: parallaxY }}
       className="relative hidden pt-10 lg:block"
     >
       {/* Accent glow blob */}
@@ -166,28 +186,27 @@ function WorldPortrait({ worldId, world }: { worldId: WorldId; world: World }) {
         style={{ background: 'rgb(var(--accent))' }}
       />
 
-      {/* Main visual — Strategist gets a metrics graphic instead of a photo */}
-      {worldId === 'strategist' ? (
-        <StrategistGraphic />
-      ) : (
+      {/* Portrait — all worlds use real photo; strategist also gets the trajectory chart below */}
+      <div
+        className="relative overflow-hidden rounded-3xl border"
+        style={{ borderColor: 'rgb(var(--accent) / 0.4)' }}
+      >
+        <img
+          src={WORLD_PORTRAIT[worldId]}
+          alt={`Keshav — ${world.name}`}
+          className="aspect-[3/4] w-full object-cover object-top"
+        />
         <div
-          className="relative overflow-hidden rounded-3xl border"
-          style={{ borderColor: 'rgb(var(--accent) / 0.4)' }}
-        >
-          <img
-            src={WORLD_PORTRAIT[worldId]}
-            alt={`Keshav — ${world.name}`}
-            className="aspect-[3/4] w-full object-cover object-top"
-          />
-          {/* Bottom fade to mask any AI background text */}
-          <div
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-24"
-            style={{ background: 'linear-gradient(to top, rgb(var(--bg)), transparent)' }}
-          />
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-24"
+          style={{ background: 'linear-gradient(to top, rgb(var(--bg)), transparent)' }}
+        />
+      </div>
+      {worldId === 'strategist' && (
+        <div className="mt-4">
+          <StrategistGraphic />
         </div>
       )}
 
-      {worldId !== 'strategist' && (
       <>
       {/* Floating chip — top-left */}
       <motion.div
@@ -235,7 +254,6 @@ function WorldPortrait({ worldId, world }: { worldId: WorldId; world: World }) {
         </motion.div>
       </motion.div>
       </>
-      )}
     </motion.div>
   );
 }

@@ -5,7 +5,9 @@ import { Download, ArrowUpLeft, Command } from 'lucide-react';
 import Aurora from '@/components/Aurora';
 import Cursor from '@/components/Cursor';
 import PersonaPill from './PersonaPill';
-import DoodleMascot from './DoodleMascot';
+import PhotoMascot from './PhotoMascot';
+import ScrollProgress from '@/components/ScrollProgress';
+import SocialSidebar from '@/components/SocialSidebar';
 import { useWorldTransition } from './TransitionProvider';
 import { worldById, type WorldId } from '@/lib/worlds';
 
@@ -89,8 +91,10 @@ export default function WorldShell({
       </div>
 
       <PersonaPill current={worldId} />
-      <DoodleMascot />
+      <PhotoMascot />
       <Cursor />
+      <ScrollProgress />
+      <SocialSidebar />
     </div>
   );
 }
