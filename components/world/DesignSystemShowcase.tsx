@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { SectionHeading } from '@/components/Reveal';
 
 /**
  * DesignSystemShowcase — the Designer world's "I think in systems, not screens"
@@ -26,14 +27,16 @@ const TYPE = [
 export default function DesignSystemShowcase() {
   return (
     <section className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
-      <p className="section-eyebrow">The system behind the screens</p>
-      <h2 className="mt-3 font-display text-3xl font-bold tracking-tight sm:text-4xl">
-        Design tokens, not one-off styling
-      </h2>
-      <p className="mt-4 max-w-2xl text-muted">
-        Colour, type and shape live as tokens so every screen stays consistent
-        and themeable — the same discipline powering this site&apos;s three worlds.
-      </p>
+      <SectionHeading
+        eyebrow="The system behind the screens"
+        title="Design tokens, not one-off styling"
+        blurb={
+          <>
+            Colour, type and shape live as tokens so every screen stays consistent
+            and themeable — the same discipline powering this site&apos;s three worlds.
+          </>
+        }
+      />
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}

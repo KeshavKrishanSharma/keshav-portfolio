@@ -4,6 +4,7 @@ import './globals.css';
 import { Analytics } from '@vercel/analytics/react';
 import { ThemeProvider } from './providers';
 import { TransitionProvider } from '@/components/world/TransitionProvider';
+import SmoothScroll from '@/components/SmoothScroll';
 import { profile } from '@/lib/data';
 
 const inter = Inter({
@@ -124,6 +125,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="relative overflow-x-hidden">
+        <SmoothScroll />
         <ThemeProvider>
           <TransitionProvider>{children}</TransitionProvider>
         </ThemeProvider>

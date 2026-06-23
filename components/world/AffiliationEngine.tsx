@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { ArrowRight, Cloud, Layers, RefreshCw } from 'lucide-react';
+import { SectionHeading } from '@/components/Reveal';
 
 /**
  * AffiliationEngine — the signature engineering piece for the Affiliation
@@ -54,17 +55,18 @@ export default function AffiliationEngine() {
 
   return (
     <section ref={ref} className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
-      <p className="font-mono-tight text-sm" style={{ color: 'rgb(var(--accent))' }}>
-        {'// signature engine · affiliation'}
-      </p>
-      <h2 className="mt-3 font-display text-3xl font-bold tracking-tight sm:text-4xl">
-        Automatic fee &amp; billing
-      </h2>
-      <p className="mt-4 max-w-2xl text-muted">
-        Fees aren&apos;t typed in — they&apos;re derived. Configure the fee heads once;
-        the engine prices every application and emits an itemized bill. When a session is
-        set to <span style={{ color: 'rgb(var(--accent))' }}>AUTO</span>, no human touches a number.
-      </p>
+      <SectionHeading
+        eyebrow={'// signature engine · affiliation'}
+        eyebrowClassName="font-mono-tight text-sm text-accent"
+        title={<>Automatic fee &amp; billing</>}
+        blurb={
+          <>
+            Fees aren&apos;t typed in — they&apos;re derived. Configure the fee heads once;
+            the engine prices every application and emits an itemized bill. When a session is
+            set to <span style={{ color: 'rgb(var(--accent))' }}>AUTO</span>, no human touches a number.
+          </>
+        }
+      />
 
       <div className="mt-10 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]">
         {/* ── The generated bill ─────────────────────────────────── */}

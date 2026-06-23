@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useRef, useState } from 'react';
+import { motion, useInView } from 'framer-motion';
+import { SectionHeading, Parallax } from '@/components/Reveal';
 
 /**
  * ArchitectureMap — interactive system diagram for the Engineer world.
@@ -61,41 +62,49 @@ const CORE = { x: 500, y: 310 };
 export default function ArchitectureMap() {
   const [active, setActive] = useState<string | null>(null);
   const current = NODES.find((n) => n.id === active);
+  const cardRef = useRef<SVGSVGElement>(null);
+  const inView = useInView(cardRef, { once: true, margin: '-20% 0px' });
 
   return (
     <section className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
-      <p className="font-mono-tight text-sm text-accent">{'// one platform, four modules'}</p>
-      <h2 className="mt-3 font-display text-3xl font-bold tracking-tight sm:text-4xl">
-        Architecture map
-      </h2>
-      <p className="mt-4 max-w-2xl text-muted">
-        Four modules, built largely from scratch, sharing one multi-tenant core.
-        Hover or tap a module to see what it adds on top of the foundation.
-      </p>
+      <SectionHeading
+        eyebrow={'// one platform, four modules'}
+        eyebrowClassName="font-mono-tight text-sm text-accent"
+        title="Architecture map"
+        blurb="Four modules, built largely from scratch, sharing one multi-tenant core. Hover or tap a module to see what it adds on top of the foundation."
+      />
 
-      <div className="glass-strong mt-8 overflow-hidden rounded-3xl p-3 sm:p-5">
+      <Parallax distance={26} className="glass-strong mt-8 overflow-hidden rounded-3xl p-3 sm:p-5">
         <svg
+          ref={cardRef}
           viewBox="0 0 1000 620"
           className="h-auto w-full"
           role="img"
           aria-label="System diagram: MPDD, Affiliation, Estate and Residence modules around a shared Samarth platform core"
         >
-          {/* Connectors */}
-          {NODES.map((n) => {
+          {/* Connectors — draw out from the core into each module on scroll-in */}
+          {NODES.map((n, i) => {
             const on = active === n.id;
             return (
               <motion.line
                 key={`link-${n.id}`}
                 x1={CORE.x}
                 y1={CORE.y}
-                x2={n.x}
-                y2={n.y}
                 stroke="rgb(var(--accent))"
                 strokeWidth={on ? 3 : 1.5}
                 strokeOpacity={active ? (on ? 0.9 : 0.15) : 0.4}
                 strokeDasharray="6 7"
-                animate={{ strokeDashoffset: [0, -26] }}
-                transition={{ duration: 1.4, repeat: Infinity, ease: 'linear' }}
+                initial={{ x2: CORE.x, y2: CORE.y }}
+                animate={
+                  inView
+                    ? { x2: n.x, y2: n.y, strokeDashoffset: [0, -26] }
+                    : { x2: CORE.x, y2: CORE.y }
+                }
+                transition={{
+                  x2: { duration: 0.7, delay: 0.15 + i * 0.12, ease: [0.16, 1, 0.3, 1] },
+                  y2: { duration: 0.7, delay: 0.15 + i * 0.12, ease: [0.16, 1, 0.3, 1] },
+                  strokeDashoffset: { duration: 1.4, repeat: Infinity, ease: 'linear' },
+                }}
               />
             );
           })}
@@ -224,7 +233,7 @@ export default function ArchitectureMap() {
             )}
           </p>
         </div>
-      </div>
+      </Parallax>
     </section>
   );
 }

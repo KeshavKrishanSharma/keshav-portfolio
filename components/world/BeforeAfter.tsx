@@ -2,6 +2,7 @@
 
 import { useCallback, useRef, useState } from 'react';
 import { GripVertical } from 'lucide-react';
+import { SectionHeading } from '@/components/Reveal';
 
 /**
  * BeforeAfter — the Designer world's signature piece. A draggable comparison
@@ -25,15 +26,11 @@ export default function BeforeAfter() {
 
   return (
     <section className="mx-auto max-w-5xl px-5 py-16 sm:px-8 sm:py-20">
-      <p className="section-eyebrow">Before / after</p>
-      <h2 className="mt-3 font-display text-3xl font-bold tracking-tight sm:text-4xl">
-        Same data. Different respect for the operator.
-      </h2>
-      <p className="mt-4 max-w-2xl text-muted">
-        Government tools are usually built for the database, not the human at the
-        desk. Drag to compare the default with the redesign — bigger type, plain
-        language, and a flow that finishes without a manual.
-      </p>
+      <SectionHeading
+        eyebrow="Before / after"
+        title="Same data. Different respect for the operator."
+        blurb="Government tools are usually built for the database, not the human at the desk. Drag to compare the default with the redesign — bigger type, plain language, and a flow that finishes without a manual."
+      />
 
       <div
         ref={wrapRef}

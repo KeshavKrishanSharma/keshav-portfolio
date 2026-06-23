@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { profile } from '@/lib/data';
+import { SectionHeading, Parallax } from '@/components/Reveal';
 
 /**
  * StakeholderMap — the Strategist world's "who I work across" graph.
@@ -24,23 +25,13 @@ const PARTNERS: Partner[] = [
 export default function StakeholderMap() {
   return (
     <section className="mx-auto max-w-5xl px-5 py-16 sm:px-8 sm:py-20">
-      <p className="section-eyebrow">Who I deliver across</p>
-      <h2 className="mt-3 font-display text-3xl font-bold tracking-tight sm:text-4xl">
-        One architect, many stakeholders
-      </h2>
-      <p className="mt-4 max-w-2xl text-muted">
-        I translate an ambiguous government mandate into shipped software —
-        sitting between policy, regulators, institutions and the engineers who
-        keep it all running.
-      </p>
+      <SectionHeading
+        eyebrow="Who I deliver across"
+        title="One architect, many stakeholders"
+        blurb="I translate an ambiguous government mandate into shipped software — sitting between policy, regulators, institutions and the engineers who keep it all running."
+      />
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-10% 0px' }}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="glass-strong mt-8 overflow-hidden rounded-3xl p-3 sm:p-5"
-      >
+      <Parallax distance={28} className="glass-strong mt-8 overflow-hidden rounded-3xl p-3 sm:p-5">
         <svg
           viewBox="0 0 840 470"
           className="h-auto w-full"
@@ -142,7 +133,7 @@ export default function StakeholderMap() {
             </g>
           ))}
         </svg>
-      </motion.div>
+      </Parallax>
     </section>
   );
 }

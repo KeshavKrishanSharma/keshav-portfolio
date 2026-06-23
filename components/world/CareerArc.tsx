@@ -3,6 +3,7 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { ArrowRight, Sparkles } from 'lucide-react';
+import { SectionHeading } from '@/components/Reveal';
 
 /**
  * CareerArc — the Strategist world's growth narrative.
@@ -81,14 +82,16 @@ export default function CareerArc() {
 
   return (
     <section ref={ref} className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
-      <p className="section-eyebrow">The arc</p>
-      <h2 className="mt-3 font-display text-3xl font-bold tracking-tight sm:text-4xl">
-        Where I&apos;ve been. Where I&apos;m going.
-      </h2>
-      <p className="mt-4 max-w-2xl text-muted">
-        Two promotions in 3.5 years — not by waiting, by building things that matter at national scale.
-        The next step isn&apos;t a secret.
-      </p>
+      <SectionHeading
+        eyebrow="The arc"
+        title={<>Where I&apos;ve been. Where I&apos;m going.</>}
+        blurb={
+          <>
+            Two promotions in 3.5 years — not by waiting, by building things that matter at national scale.
+            The next step isn&apos;t a secret.
+          </>
+        }
+      />
 
       {/* Timeline arc */}
       <div className="relative mt-12">

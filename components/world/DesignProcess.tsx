@@ -1,7 +1,6 @@
 'use client';
 
-import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { SectionHeading, Stagger, StaggerItem } from '@/components/Reveal';
 
 /**
  * DesignProcess — the Designer world's "how I work" section.
@@ -45,28 +44,18 @@ const PHASES = [
 ];
 
 export default function DesignProcess() {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: '-8% 0px' });
-
   return (
-    <section ref={ref} className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
-      <p className="section-eyebrow">Process · operator-first UX</p>
-      <h2 className="mt-3 font-display text-3xl font-bold tracking-tight sm:text-4xl">
-        Good design is invisible to the operator
-      </h2>
-      <p className="mt-4 max-w-2xl text-muted">
-        I design enterprise software for people who never chose to use software —
-        university registrars, estate managers, hostel admins.
-        If they need training, the design failed.
-      </p>
+    <section className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
+      <SectionHeading
+        eyebrow="Process · operator-first UX"
+        title="Good design is invisible to the operator"
+        blurb="I design enterprise software for people who never chose to use software — university registrars, estate managers, hostel admins. If they need training, the design failed."
+      />
 
-      <div className="mt-10 grid gap-5 sm:grid-cols-2">
-        {PHASES.map((p, i) => (
-          <motion.div
+      <Stagger className="mt-10 grid gap-5 sm:grid-cols-2" stagger={0.1}>
+        {PHASES.map((p) => (
+          <StaggerItem
             key={p.num}
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.55, delay: 0.1 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
             className="glass-strong rounded-2xl p-6"
           >
             <div className="flex items-start justify-between">
@@ -99,9 +88,9 @@ export default function DesignProcess() {
               </span>
               {p.example}
             </div>
-          </motion.div>
+          </StaggerItem>
         ))}
-      </div>
+      </Stagger>
     </section>
   );
 }

@@ -3,6 +3,7 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { skills } from '@/lib/data';
+import { SectionHeading, Stagger, StaggerItem } from '@/components/Reveal';
 
 /**
  * TechStack — Engineer world's skills grid.
@@ -14,23 +15,17 @@ export default function TechStack() {
 
   return (
     <section ref={ref} className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
-      <p className="font-mono-tight text-sm" style={{ color: 'rgb(var(--accent))' }}>
-        {'// stack · what I ship'}
-      </p>
-      <h2 className="mt-3 font-display text-3xl font-bold tracking-tight sm:text-4xl">
-        {skills.jobStack.title}
-      </h2>
-      <p className="mt-2 text-sm text-muted">{skills.jobStack.subtitle}</p>
+      <SectionHeading
+        eyebrow={'// stack · what I ship'}
+        eyebrowClassName="font-mono-tight text-sm text-accent"
+        title={skills.jobStack.title}
+        blurb={skills.jobStack.subtitle}
+        blurbClassName="mt-2 text-sm text-muted"
+      />
 
-      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {skills.jobStack.groups.map((group, gi) => (
-          <motion.div
-            key={group.name}
-            initial={{ opacity: 0, y: 18 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.08 + gi * 0.07, ease: [0.16, 1, 0.3, 1] }}
-            className="glass rounded-2xl p-5"
-          >
+      <Stagger className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" stagger={0.07}>
+        {skills.jobStack.groups.map((group) => (
+          <StaggerItem key={group.name} className="glass rounded-2xl p-5">
             <p
               className="mb-3 font-mono-tight text-[10px] font-semibold uppercase tracking-[0.18em]"
               style={{ color: 'rgb(var(--accent))' }}
@@ -52,9 +47,9 @@ export default function TechStack() {
                 </span>
               ))}
             </div>
-          </motion.div>
+          </StaggerItem>
         ))}
-      </div>
+      </Stagger>
 
       {/* Learning frontier */}
       <motion.div

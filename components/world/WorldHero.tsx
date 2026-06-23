@@ -73,10 +73,9 @@ function WordReveal({ text }: { text: string }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45, delay: 0.08 + i * 0.055, ease: [0.16, 1, 0.3, 1] }}
-          className="inline-block"
-          style={{ marginRight: '0.3em' }}
+          className="inline-block whitespace-pre"
         >
-          {word}
+          {word}{i < words.length - 1 ? ' ' : ''}
         </motion.span>
       ))}
     </>

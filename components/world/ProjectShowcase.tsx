@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, Images, X, ChevronLeft, ChevronRight, Zap } from 'lucide-react';
 import type { Gallery } from '@/lib/gallery';
+import { SectionHeading } from '@/components/Reveal';
 
 /**
  * ProjectShowcase — information-first project cards.
@@ -25,18 +26,12 @@ export default function ProjectShowcase({
 
   return (
     <section className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
-      <motion.div
-        initial={{ opacity: 0, y: 18 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-12% 0px' }}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      >
-        <p className="text-xs uppercase tracking-[0.2em]" style={{ color: 'rgb(var(--accent))' }}>
-          {eyebrow}
-        </p>
-        <h2 className="mt-3 font-display text-3xl font-bold tracking-tight sm:text-4xl">{title}</h2>
-        {blurb && <p className="mt-4 max-w-2xl text-muted">{blurb}</p>}
-      </motion.div>
+      <SectionHeading
+        eyebrow={eyebrow}
+        eyebrowClassName="text-xs uppercase tracking-[0.2em] text-accent"
+        title={title}
+        blurb={blurb}
+      />
 
       <div className="mt-10 grid gap-5 md:grid-cols-2">
         {galleries.map((g, i) => (
@@ -64,8 +59,8 @@ function ProjectCard({
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: 24, scale: 0.97 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true, margin: '-8% 0px' }}
       transition={{ duration: 0.55, delay: (index % 2) * 0.06, ease: [0.16, 1, 0.3, 1] }}
       className="glass group flex flex-col rounded-2xl p-6 transition-colors hover:border-accent/40 sm:p-7"

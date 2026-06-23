@@ -8,6 +8,8 @@ import PersonaPill from './PersonaPill';
 import PhotoMascot from './PhotoMascot';
 import ScrollProgress from '@/components/ScrollProgress';
 import SocialSidebar from '@/components/SocialSidebar';
+import SectionNav from '@/components/SectionNav';
+import SectionDim from '@/components/SectionDim';
 import { useWorldTransition } from './TransitionProvider';
 import { worldById, type WorldId } from '@/lib/worlds';
 
@@ -95,6 +97,8 @@ export default function WorldShell({
       <Cursor />
       <ScrollProgress />
       <SocialSidebar />
+      <SectionNav />
+      <SectionDim />
     </div>
   );
 }
