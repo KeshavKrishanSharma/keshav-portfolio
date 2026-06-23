@@ -61,7 +61,7 @@ export default function DoodleMascot() {
         <motion.img
           src={profile.doodlePortrait}
           alt=""
-          className="w-24 drop-shadow-2xl xl:w-28"
+          className="w-36 drop-shadow-2xl xl:w-40"
           style={{ rotate: tilt, transformOrigin: 'bottom center' }}
           onError={() => setImgOk(false)}
         />

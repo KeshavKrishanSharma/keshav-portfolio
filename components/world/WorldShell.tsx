@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { Download, ArrowUpLeft, Command } from 'lucide-react';
 import Aurora from '@/components/Aurora';
+import Cursor from '@/components/Cursor';
 import PersonaPill from './PersonaPill';
 import DoodleMascot from './DoodleMascot';
 import { useWorldTransition } from './TransitionProvider';
@@ -89,6 +90,7 @@ export default function WorldShell({
 
       <PersonaPill current={worldId} />
       <DoodleMascot />
+      <Cursor />
     </div>
   );
 }

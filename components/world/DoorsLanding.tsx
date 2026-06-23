@@ -41,9 +41,9 @@ function DoorCard({ w, i, navigate }: { w: World; i: number; navigate: NavigateF
           backdropFilter: 'blur(16px)',
         }}
       >
-        {/* Accent glow on hover */}
+        {/* Ambient world glow — subtle at rest, strong on hover */}
         <span
-          className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+          className="pointer-events-none absolute inset-0 rounded-3xl opacity-25 transition-opacity duration-300 group-hover:opacity-100"
           style={{
             boxShadow: `inset 0 0 0 1.5px ${w.accent}, 0 30px 80px -28px ${w.accent}`,
             background: `radial-gradient(120% 80% at 50% 0%, ${w.accent}1a, transparent 70%)`

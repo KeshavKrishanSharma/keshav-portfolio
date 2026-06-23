@@ -6,6 +6,7 @@ import AllocationMachine from '@/components/world/AllocationMachine';
 import AffiliationEngine from '@/components/world/AffiliationEngine';
 import ProjectShowcase from '@/components/world/ProjectShowcase';
 import PlatformBand from '@/components/world/PlatformBand';
+import TechStack from '@/components/world/TechStack';
 import ContactStrip from '@/components/world/ContactStrip';
 import { worldById } from '@/lib/worlds';
 import { enterpriseGalleries } from '@/lib/gallery';
@@ -25,6 +26,7 @@ export default function EngineerWorld() {
       <WorldHero worldId="engineer" />
       <ArchitectureMap />
       <AllocationMachine />
+      <TechStack />
       <AffiliationEngine />
       <PlatformBand />
       <ProjectShowcase

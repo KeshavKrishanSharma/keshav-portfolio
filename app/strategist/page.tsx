@@ -5,8 +5,7 @@ import StatRollup from '@/components/world/StatRollup';
 import About from '@/components/About';
 import StakeholderMap from '@/components/world/StakeholderMap';
 import CareerArc from '@/components/world/CareerArc';
-import PlatformBand from '@/components/world/PlatformBand';
-import Timeline from '@/components/world/Timeline';
+import Honors from '@/components/world/Honors';
 import ContactStrip from '@/components/world/ContactStrip';
 import { worldById } from '@/lib/worlds';
 import { profile } from '@/lib/data';
@@ -25,10 +24,9 @@ export default function StrategistWorld() {
       <WorldHero worldId="strategist" />
       <StatRollup />
       <About />
-      <PlatformBand />
       <StakeholderMap />
       <CareerArc />
-      <Timeline />
+      <Honors />
       <ContactStrip />
     </WorldShell>
   );

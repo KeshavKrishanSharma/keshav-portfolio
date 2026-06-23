@@ -59,7 +59,7 @@ const PILLARS = [
 ];
 
 const NOW = [
-  { label: 'Currently at', value: 'IIITD · Samarth national platform' },
+  { label: 'Currently at', value: 'Samarth eGov · Ministry of Education' },
   { label: 'Building', value: 'Gen AI side projects + this site' },
   { label: 'Learning', value: 'LLMs · agentic AI · product thinking' },
   { label: 'I believe', value: 'The engineer who understands the product is the most valuable one in the room' }

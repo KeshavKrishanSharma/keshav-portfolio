@@ -24,7 +24,7 @@ const mono = JetBrains_Mono({
   display: 'swap'
 });
 
-const title = `${profile.name} — Solutions Architect & Technical Lead`;
+const title = `${profile.name} — Full-Stack Engineer & Systems Architect`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(
