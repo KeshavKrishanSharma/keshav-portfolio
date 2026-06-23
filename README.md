@@ -2,126 +2,114 @@
 
 # Keshav Krishan Sharma — Portfolio
 
-**Solutions Architect · Technical Lead · Full-Stack Engineer**
+**Full-Stack Engineer · Systems Architect · Product-minded**
 
-A premium, performance-tuned personal portfolio that presents four national-scale
-enterprise modules as real engineering case studies — playful on the surface,
-architect-serious underneath.
+An interactive personal portfolio built around a "three doors" idea: the same
+person presented through three lenses — **Engineer**, **Strategist**, and
+**Designer** — plus a classic one-page résumé for anyone in a hurry.
 
-`Next.js 14` · `React 18` · `TypeScript` · `TailwindCSS` · `Framer Motion` · `React Three Fiber`
+Live → **[keshavkrishansharma.com](https://keshavkrishansharma.com)**
+
+`Next.js 14` · `React 18` · `TypeScript` · `Tailwind CSS` · `Framer Motion` · `Lenis`
 
 </div>
 
 ---
 
-## ✨ Highlights
+## What this site is
 
-- **Case-study driven** — MPDD, Affiliation, Estate, and Residence Allocation are each
-  presented as *Problem → Architecture → Key Decisions → Impact*, not just a screenshot grid.
-- **Signature interaction** — an animated allocation **state-machine** that steps through the
-  workflow lifecycle on scroll (a live demo of the kind of systems I build).
-- **Three themes** — Light · Dark · Creative (aurora glassmorphism), with no flash on load.
-- **Playful, performant** — tilt cards, orbital 3D project mode, magnetic motion, custom cursor —
-  all degrading gracefully and respecting `prefers-reduced-motion`.
-- **SEO-ready** — Open Graph + Twitter cards, JSON-LD `Person` schema, generated
-  `sitemap.xml` and `robots.txt`.
-- **Single source of truth** — every word of content lives in [`lib/data.ts`](lib/data.ts).
+Most portfolios are a single scrolling page. This one asks **"What brings you
+here?"** on the landing screen and lets the visitor choose the version of the
+story that matters to them:
+
+| Door | For | What it shows |
+|------|-----|---------------|
+| 🛠️ **Engineer** | Hiring managers / tech leads | Architecture maps, a live state-machine, the real engines behind 4 national-scale modules, the full tech stack |
+| 📊 **Strategist** | Recruiters / leadership | Impact in numbers, who I deliver across, the career arc, recognition |
+| 🎨 **Designer** | Design-minded teams | Before/after redesigns, the design process, a live design-token system |
+
+There's also a **`/resume`** route — a fast, classic one-pager for recruiters
+who'd rather just read.
+
+Everything is one real person, one codebase, one source of truth for content.
 
 ---
 
-## ⚡ Quick start
+## Quick start
 
 ```bash
 npm install
-npm run dev      # http://localhost:3000
+npm run dev      # → http://localhost:3000
 ```
 
-> `predev` / `prebuild` run [`scripts/setup-assets.mjs`](scripts/setup-assets.mjs), which copies
-> your résumé PDF and certificate PDFs from the project root into `/public` so Next.js can serve
-> them. The Aadhaar PDF is **deliberately excluded** — never publish a government ID.
+That's it. The dev server has hot reload, so edits show up instantly.
+
+> **Note:** `predev` and `prebuild` automatically run
+> [`scripts/setup-assets.mjs`](scripts/setup-assets.mjs), which copies the
+> résumé and certificate PDFs from the project root into `/public` so the site
+> can serve them. You don't need to run anything by hand.
 
 ---
 
-## 📁 Project structure
+## How to update the content
 
-```
-app/
-  layout.tsx        Root layout · fonts · SEO metadata · JSON-LD · theme bootstrap
-  page.tsx          Composes every section in order
-  providers.tsx     ThemeProvider (Light / Dark / Creative)
-  globals.css       Theme tokens + design-system utilities
-  sitemap.ts        Generated /sitemap.xml
-  robots.ts         Generated /robots.txt
-components/
-  Hero · About · Experience · Projects · Architecture · Skills
-  Certifications · Education · Contact · Footer · Navbar · ThemeToggle
-  Aurora · Cursor · HeroDoodle
-lib/
-  data.ts           🔑 Single source of truth — edit content here
-scripts/
-  setup-assets.mjs  Copies PDFs into /public on dev/build
-public/
-  images/           Portrait, OG image, and case-study screenshots
-  certificates/     Auto-populated by setup-assets
-```
+**You almost never need to touch component code to change what the site says.**
+All wording lives in two files:
 
----
+- **[`lib/data.ts`](lib/data.ts)** — your profile, experience, projects, skills,
+  certifications, education, and honors. Edit the text here and every page
+  updates.
+- **[`lib/worlds.ts`](lib/worlds.ts)** — the headline, sub-text, and "proof"
+  numbers shown at the top of each of the three worlds.
 
-## ✏️ Editing content
+A few common edits:
 
-**All copy lives in [`lib/data.ts`](lib/data.ts).** Update `profile`, `experience`, `projects`,
-`architecture`, `skills`, `certifications`, `education`, and `honors` there — every section reads
-from it. Project cards marked `featured: true` render as full case studies; add a `problem`,
-`architecture[]`, and `decisions[]` to any project to enrich its modal.
+| I want to… | Edit |
+|------------|------|
+| Change my name, tagline, email, location, socials | `profile` in `lib/data.ts` |
+| Update a job, add a bullet point | `experience` in `lib/data.ts` |
+| Add or edit a project / case study | `projects` in `lib/data.ts` |
+| Change the headline on the Engineer page | `worlds[0].hero` in `lib/worlds.ts` |
+| Swap my photo | replace `public/images/persona/my_dp.jpeg` (keep the name) |
+| Change the résumé PDF | replace `resume.pdf` (and `resume-leadership.pdf`) in the project root |
 
 ---
 
-## 🖼️ Images
+## Pictures
 
-The site references a few images that you add to `public/images/`. **All are optional** — missing
-files degrade to tasteful placeholders, so nothing ever looks broken.
-
-| File | Used for | Recommended |
-|------|----------|-------------|
-| `public/images/portrait.jpg` | About-section headshot | Square, ~600×600, light background |
-| `public/og.png` | Social share preview (LinkedIn/WhatsApp/X) | Exactly 1200×630 |
-| `public/images/mpdd-dashboard.png` | MPDD case study | ≥1440px wide, light theme |
-| `public/images/affiliation-dashboard.png` | Affiliation case study | ≥1440px wide |
-| `public/images/estate-dashboard.png` | Estate case study | ≥1440px wide |
-| `public/images/ehousing-dashboard.png` | Residence Allocation case study | ≥1440px wide |
-
-> Instagram images **cannot be hot-linked** (blocked + against ToS) — download them and place the
-> files here instead. Use sanitized/demo screenshots only for client systems.
+The site is designed to **never look broken** if an image is missing — it falls
+back to a tasteful placeholder. Images live in `public/images/`. The main one is
+your portrait at `public/images/persona/my_dp.jpeg`.
 
 ---
 
-## 🎨 Theme system
-
-Three themes are driven by CSS custom properties in [`app/globals.css`](app/globals.css):
-`[data-theme="light"]`, `[data-theme="dark"]`, `[data-theme="creative"]`. The preference persists
-in `localStorage`, and an inline `<head>` script applies it before first paint to prevent flashing.
-
----
-
-## 🚀 Build & deploy
+## Build & deploy
 
 ```bash
 npm run build
-npm start         # production server on :3000
+npm start        # serve the production build locally on :3000
 ```
 
-**Recommended host: [Vercel](https://vercel.com)** (free Hobby tier, zero-config for Next.js):
+The site is hosted on **[Vercel](https://vercel.com)**. To ship an update:
 
 ```bash
-npx vercel
+git push origin main      # if the project is connected to Vercel, this auto-deploys
+# or, to deploy manually:
+vercel --prod
 ```
 
-After the first deploy, set the real URL in `profile.siteUrl` ([`lib/data.ts`](lib/data.ts)) so
-canonical tags, the sitemap, and OG metadata point to the right place. Also works on Netlify,
-Cloudflare Pages, AWS Amplify, or Render.
+If you ever move to a new domain, update `profile.siteUrl` in
+[`lib/data.ts`](lib/data.ts) so the share previews and sitemap point to the
+right place.
 
 ---
 
-## 📜 License
+## Want the full technical picture?
 
-Personal portfolio code — © Keshav Krishan Sharma. Reuse the structure, not the content.
+Everything about how the site is built — the architecture, every component, the
+animation system, the theming, and the deploy pipeline — is documented in
+**[TECHNICAL.md](TECHNICAL.md)**.
+
+---
+
+© Keshav Krishan Sharma. The structure is reusable; the content is mine.
