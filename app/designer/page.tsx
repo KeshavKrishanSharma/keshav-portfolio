@@ -5,6 +5,7 @@ import BeforeAfter from '@/components/world/BeforeAfter';
 import DesignProcess from '@/components/world/DesignProcess';
 import ProjectShowcase from '@/components/world/ProjectShowcase';
 import DesignSystemShowcase from '@/components/world/DesignSystemShowcase';
+import ContactStrip from '@/components/world/ContactStrip';
 import { worldById } from '@/lib/worlds';
 import { enterpriseGalleries, clientGalleries } from '@/lib/gallery';
 import { profile } from '@/lib/data';
@@ -30,6 +31,7 @@ export default function DesignerWorld() {
         galleries={[...enterpriseGalleries, ...clientGalleries]}
       />
       <DesignSystemShowcase />
+      <ContactStrip />
     </WorldShell>
   );
 }

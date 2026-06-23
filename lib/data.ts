@@ -4,7 +4,7 @@
 export const profile = {
   name: 'Keshav Krishan Sharma',
   shortName: 'Keshav',
-  initials: 'KK',
+  initials: 'KKS',
   portrait: '/images/persona/portrait-real.jpg',
   doodlePortrait: '/images/persona/portrait-doodle.jpg',
   titleRotator: [
@@ -43,7 +43,7 @@ export const stats = [
 
 export const experience = [
   {
-    company: 'Smarth eGov × Ministry of Education (Samarth)',
+    company: 'Samarth eGov × Ministry of Education (Samarth)',
     role: 'Software Developer C · Full-Stack & Systems Architecture',
     period: 'Jan 2025 – Present · 1.5 yrs',
     bullets: [
@@ -55,7 +55,7 @@ export const experience = [
     ]
   },
   {
-    company: 'Smarth eGov × Ministry of Education (Samarth)',
+    company: 'Samarth eGov × Ministry of Education (Samarth)',
     role: 'Junior Software Developer · Full-Stack',
     period: 'Jan 2023 – Jan 2025 · 2 yrs',
     bullets: [
@@ -67,7 +67,7 @@ export const experience = [
     ]
   },
   {
-    company: 'Smarth eGov',
+    company: 'Samarth eGov',
     role: 'Software Engineering Intern · Backend',
     period: 'Jan – Jun 2022 · 6 months',
     bullets: [
@@ -468,5 +468,5 @@ export const honors = [
   'Winner — Inter College Innovative Idea Competition (Smart Campus solution)',
   'Core Member — IEEE IDC Initiative · led tech workshops for 200+ students',
   'Technical Presenter — IIT Varanasi TechFest (GovTech research track)',
-  'Outstanding Technical Contribution Award — Smarth eGov (Q2 2024)'
+  'Outstanding Technical Contribution Award — Samarth eGov (Q2 2024)'
 ];

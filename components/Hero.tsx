@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
-import HeroDoodle from './HeroDoodle';
 import { profile } from '@/lib/data';
 
 export default function Hero() {
@@ -155,8 +154,14 @@ export default function Hero() {
           transition={{ delay: 0.2, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           className="relative order-1 mx-auto w-full max-w-[520px] lg:order-2 lg:max-w-none"
         >
-          <div className="relative aspect-square w-full sm:aspect-[1.1/1] lg:aspect-square">
-            <HeroDoodle />
+          <div className="relative flex aspect-square w-full items-center justify-center sm:aspect-[1.1/1] lg:aspect-square">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={profile.doodlePortrait}
+              alt=""
+              aria-hidden
+              className="h-full w-full object-contain drop-shadow-2xl"
+            />
           </div>
         </motion.div>
       </div>

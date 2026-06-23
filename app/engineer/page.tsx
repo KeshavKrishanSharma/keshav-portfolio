@@ -6,6 +6,7 @@ import AllocationMachine from '@/components/world/AllocationMachine';
 import AffiliationEngine from '@/components/world/AffiliationEngine';
 import ProjectShowcase from '@/components/world/ProjectShowcase';
 import PlatformBand from '@/components/world/PlatformBand';
+import ContactStrip from '@/components/world/ContactStrip';
 import { worldById } from '@/lib/worlds';
 import { enterpriseGalleries } from '@/lib/gallery';
 import { profile } from '@/lib/data';
@@ -32,6 +33,7 @@ export default function EngineerWorld() {
         blurb="Four enterprise modules, built largely solo inside a 20+ module national platform. Open any card for the screens."
         galleries={enterpriseGalleries}
       />
+      <ContactStrip />
     </WorldShell>
   );
 }

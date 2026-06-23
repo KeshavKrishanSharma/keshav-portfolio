@@ -14,7 +14,7 @@ const PHASES = [
   {
     label: 'Intern',
     period: 'Jan – Jun 2022',
-    company: 'Smarth eGov',
+    company: 'Samarth eGov',
     wins: ['Built first PHP/Yii2 backend modules', 'Optimised SQL → ~30% API speedup', 'Learned the Samarth platform from the inside'],
     current: false,
     future: false
@@ -22,7 +22,7 @@ const PHASES = [
   {
     label: 'Junior Software Developer',
     period: 'Jan 2023 – Jan 2025',
-    company: 'Smarth eGov × Ministry of Education',
+    company: 'Samarth eGov × Ministry of Education',
     wins: [
       'Built MPDD end-to-end: FIFO inventory, 11-state allocation engine, procurement pipeline',
       'Built Estate: hierarchical asset register, ARMO civil works, D3 analytics',
@@ -36,7 +36,7 @@ const PHASES = [
   {
     label: 'Software Developer C',
     period: 'Jan 2025 – Present',
-    company: 'Smarth eGov × Ministry of Education',
+    company: 'Samarth eGov × Ministry of Education',
     wins: [
       'Promoted — a title that still undersells the scope',
       'Sole architect on 4 of 20+ platform modules',
