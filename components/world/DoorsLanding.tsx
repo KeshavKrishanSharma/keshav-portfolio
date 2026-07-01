@@ -401,11 +401,11 @@ export default function DoorsLanding() {
             transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="mx-auto mt-5 max-w-xl text-base text-muted sm:text-lg"
           >
-            Same person — three lenses. Pick yours.
+            Same person — four lenses. Pick yours.
           </motion.p>
 
-          {/* The three doors */}
-          <div className="mt-10 grid w-full gap-5 sm:grid-cols-3 sm:gap-6">
+          {/* The doors */}
+          <div className="mt-10 grid w-full gap-5 sm:grid-cols-2 lg:grid-cols-4 sm:gap-6">
             {worlds.map((w, i) => (
               <DoorCard key={w.id} w={w} i={i} navigate={navigate} />
             ))}
@@ -429,7 +429,7 @@ export default function DoorsLanding() {
               In a hurry? Skip the play — see the full résumé →
             </button>
             <span className="text-[11px] text-muted/70">
-              tip: press 1 · 2 · 3 to walk straight through a door
+              tip: press 1 · 2 · 3 · 4 to walk straight through a door
             </span>
           </motion.div>
         </div>

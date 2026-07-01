@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { motion, useInView, useScroll, useTransform, useSpring } from 'framer-motion';
 import Terminal from './Terminal';
 import { worldById, type World, type WorldId } from '@/lib/worlds';
+import { profile } from '@/lib/data';
 
 function parseStat(value: string) {
   const m = value.match(/^([^\d]*)(\d+(?:\.\d+)?)(.*)$/);
@@ -54,13 +55,15 @@ const fadeUp = (d: number) => ({
 const EXPLORE: Record<WorldId, string[]> = {
   engineer:   ['Architecture map', 'Allocation state-machine', 'Case studies'],
   strategist: ['Impact in numbers', 'Stakeholder map', 'Career timeline'],
-  designer:   ['Before / after', 'UI gallery', 'Design system']
+  designer:   ['Before / after', 'UI gallery', 'Design system'],
+  lab:        ['Gen AI projects', 'AI agents', 'Live as they ship']
 };
 
 const WORLD_PORTRAIT: Record<WorldId, string> = {
   engineer:   '/images/persona/my_dp.jpeg',
   strategist: '/images/persona/my_dp.jpeg',
   designer:   '/images/persona/designer-scene.jpg',
+  lab:        '/images/persona/my_dp.jpeg',
 };
 
 function WordReveal({ text }: { text: string }) {
@@ -136,6 +139,7 @@ export default function WorldHero({ worldId }: { worldId: WorldId }) {
             {worldId === 'engineer'   && <Terminal />}
             {worldId === 'strategist' && <PrincipleStrip />}
             {worldId === 'designer'   && <StudioCard />}
+            {worldId === 'lab'        && <LabStrip />}
           </motion.div>
 
           {/* "In this world" chips — staggered */}
@@ -347,6 +351,31 @@ function PrincipleStrip() {
       <p className="mt-3 font-display text-xl leading-snug sm:text-2xl">
         &quot;Give me an ambiguous mandate and a deadline. I&apos;ll return a shipped
         platform, a maintainable codebase, and a team that can run it without me.&quot;
+      </p>
+    </div>
+  );
+}
+
+/* ── Lab: what's on the bench right now ─────────────────────────────────── */
+function LabStrip() {
+  return (
+    <div
+      className="glass-strong rounded-2xl px-6 py-6 sm:px-8"
+      style={{ borderColor: 'rgb(var(--accent) / 0.25)' }}
+    >
+      <p
+        className="text-xs uppercase tracking-[0.2em]"
+        style={{ color: 'rgb(var(--accent))' }}
+      >
+        On the bench
+      </p>
+      <p className="mt-3 font-display text-xl leading-snug sm:text-2xl">
+        Currently: {profile.currentlyBuilding}.
+      </p>
+      <p className="mt-3 max-w-md text-sm text-muted">
+        Every project below ships as its own app — React/Next.js front, Python
+        where the model or agent logic lives — linked from this one domain as
+        it goes live.
       </p>
     </div>
   );

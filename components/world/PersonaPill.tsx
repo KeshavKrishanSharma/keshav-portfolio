@@ -29,7 +29,7 @@ export default function PersonaPill({ current }: { current: WorldId }) {
         return;
       if (e.metaKey || e.ctrlKey || e.altKey) return;
 
-      if (e.key === '1' || e.key === '2' || e.key === '3') {
+      if (e.key === '1' || e.key === '2' || e.key === '3' || e.key === '4') {
         const w = worlds.find((x) => String(x.num) === e.key);
         if (w && w.id !== current) navigate(`/${w.id}`, w.accent);
       } else if (e.key === '0' || e.key.toLowerCase() === 'h') {

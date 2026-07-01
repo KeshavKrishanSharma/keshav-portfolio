@@ -373,6 +373,25 @@ html.lenis body {
   color-scheme: light;
 }
 
+/* 🧪 Lab — Gen AI / Agentic Lab, deep space violet + cyan */
+[data-world='lab'] {
+  --bg: 10 8 20;
+  --surface: 17 14 28;
+  --glass: 21 17 34;
+  --border: 45 36 66;
+  --fg: 234 231 245;
+  --muted: 148 142 168;
+  --accent: 167 139 250;
+  --accent-2: 34 211 238;
+  --accent-3: 236 72 153;
+  --glass-alpha: 0.5;
+  --aurora-1: 139 92 246;
+  --aurora-2: 34 211 238;
+  --aurora-3: 236 72 153;
+  --grain-opacity: 0.05;
+  color-scheme: dark;
+}
+
 /* ---------- Doors landing canvas (self-contained dark palette) ---------- */
 .door-canvas {
   /* Fixed, elegant tokens so the landing looks identical regardless of the

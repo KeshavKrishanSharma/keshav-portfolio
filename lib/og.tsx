@@ -29,6 +29,13 @@ const PALETTE: Record<
     sub: '#7e6a60',
     accent: '#f47250',
     chip: 'rgba(244,114,80,0.14)'
+  },
+  lab: {
+    bg: 'linear-gradient(135deg, #0a0814 0%, #16112b 60%, #0d1a2b 100%)',
+    fg: '#ece9f7',
+    sub: '#9791b8',
+    accent: '#a78bfa',
+    chip: 'rgba(167,139,250,0.16)'
   }
 };
 

@@ -3,7 +3,7 @@
 // here. Each world recolors the site by setting `data-world` on a wrapper
 // (tokens live in globals.css under [data-world='...']).
 
-export type WorldId = 'engineer' | 'strategist' | 'designer';
+export type WorldId = 'engineer' | 'strategist' | 'designer' | 'lab';
 
 // ── Résumé routing ────────────────────────────────────────────────────────
 // Engineer + Designer point at the technical résumé. Strategist points at the
@@ -15,8 +15,8 @@ export const LEADERSHIP_RESUME = '/resume-leadership.pdf';
 
 export interface World {
   id: WorldId;
-  /** 1 / 2 / 3 — used for keyboard switching and door order. */
-  num: 1 | 2 | 3;
+  /** 1 / 2 / 3 / 4 — used for keyboard switching and door order. */
+  num: 1 | 2 | 3 | 4;
   /** Display name: "Engineer". */
   name: string;
   /** Door headline: "The Engineer". */
@@ -108,6 +108,28 @@ export const worlds: World[] = [
       { value: '5+', label: 'UX certifications' },
       { value: '4', label: 'enterprise products designed' },
       { value: '3', label: 'client projects shipped' }
+    ]
+  },
+  {
+    id: 'lab',
+    num: 4,
+    name: 'Lab',
+    doorTitle: 'Gen AI / Agentic Lab',
+    doorNeed: 'You want to see what I\'m building with generative AI and autonomous agents.',
+    vibe: 'Gen AI · Agents · Shipping in public',
+    glyph: '🧪',
+    accent: '#a78bfa', // violet
+    resume: TECH_RESUME,
+    hero: {
+      kicker: '// generative AI & agentic engineering — shipping in public',
+      headline: '3.5 years of full-stack. Now I\'m building with the models, not just around them.',
+      sub: 'A working lab, not a highlight reel. Each project here is a real Gen AI or agent build — React/Next.js on the front, Python where the model and agent logic lives — deployed under this domain as it ships. Nothing here is vaporware: it\'s either live or clearly marked "building".',
+      cta: 'Enter the Lab'
+    },
+    proof: [
+      { value: '2', label: 'tracks: Gen AI + agents' },
+      { value: '3.5+', label: 'yrs full-stack, now + AI' },
+      { value: '1', label: 'domain — every project lives here' }
     ]
   }
 ];

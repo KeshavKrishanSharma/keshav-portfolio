@@ -6,6 +6,7 @@ import {
   Blocks,
   LineChart,
   Palette,
+  Bot,
   Home,
   FileText,
   Download,
@@ -39,7 +40,8 @@ type Action = {
 const ICON: Record<string, LucideIcon> = {
   engineer: Blocks,
   strategist: LineChart,
-  designer: Palette
+  designer: Palette,
+  lab: Bot
 };
 
 function buildActions(): Action[] {
